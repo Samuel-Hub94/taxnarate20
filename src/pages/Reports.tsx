@@ -3,6 +3,7 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { formatNaira } from '@/lib/tax-calculator';
+import { EInvoiceSetup } from '@/components/einvoice/EInvoiceSetup';
 import { 
   BarChart3, 
   Lock,
@@ -253,6 +254,11 @@ export default function Reports() {
             </div>
           </CardContent>
         </Card>
+        
+        {/* E-Invoicing Section */}
+        {state.userType === 'business' && (
+          <EInvoiceSetup />
+        )}
       </div>
     </MainLayout>
   );

@@ -100,6 +100,20 @@ export function calculate2026Tax(
 }
 
 /**
+ * Alias for calculate2026Tax - returns just tax and effective rate
+ */
+export function calculatePAYE2026(
+  annualGross: number,
+  annualRent: number = 0
+): { tax: number; effectiveRate: number } {
+  const result = calculate2026Tax(annualGross, annualRent);
+  return {
+    tax: result.taxDue,
+    effectiveRate: result.effectiveRate,
+  };
+}
+
+/**
  * Calculate 2025 CRA Tax (for comparison)
  */
 export function calculate2025Tax(annualGross: number): number {
