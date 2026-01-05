@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { StatementImport } from '@/components/calculator/StatementImport';
 import { 
   calculate2026Tax, 
   calculate2025Tax, 
@@ -22,7 +24,9 @@ import {
   CheckCircle2,
   Info,
   Building2,
-  User
+  User,
+  FileSpreadsheet,
+  Keyboard
 } from 'lucide-react';
 
 export default function TaxCalculator() {
@@ -89,6 +93,10 @@ export default function TaxCalculator() {
     }
   }, [monthlyIncome, annualRent, annualTurnover, isIndividual]);
   
+  const handleStatementIncome = (detectedIncome: number) => {
+    setMonthlyIncome(detectedIncome.toString());
+  };
+
   return (
     <MainLayout>
       <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
@@ -104,108 +112,133 @@ export default function TaxCalculator() {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input Section */}
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                {isIndividual ? (
-                  <User className="h-5 w-5 text-primary" />
-                ) : (
-                  <Building2 className="h-5 w-5 text-primary" />
-                )}
-                <div>
-                  <CardTitle>
-                    {isIndividual ? 'Personal Income Details' : 'Business Details'}
-                  </CardTitle>
-                  <CardDescription>
-                    {isIndividual 
-                      ? 'Enter your monthly income and rent'
-                      : 'Enter your annual business turnover'
-                    }
-                  </CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {isIndividual ? (
-                <>
+          <div className="space-y-4">
+            {isIndividual ? (
+              <Tabs defaultValue="manual" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="manual" className="gap-2">
+                    <Keyboard className="h-4 w-4" />
+                    Manual Entry
+                  </TabsTrigger>
+                  <TabsTrigger value="import" className="gap-2">
+                    <FileSpreadsheet className="h-4 w-4" />
+                    Import Statement
+                  </TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="manual" className="mt-4">
+                  <Card>
+                    <CardHeader>
+                      <div className="flex items-center gap-3">
+                        <User className="h-5 w-5 text-primary" />
+                        <div>
+                          <CardTitle>Personal Income Details</CardTitle>
+                          <CardDescription>
+                            Enter your monthly income and rent
+                          </CardDescription>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="monthlyIncome">Monthly Gross Income</Label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">₦</span>
+                          <Input
+                            id="monthlyIncome"
+                            type="number"
+                            placeholder="0"
+                            value={monthlyIncome}
+                            onChange={(e) => setMonthlyIncome(e.target.value)}
+                            className="pl-8"
+                          />
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          Annual: {formatNaira((parseFloat(monthlyIncome) || 0) * 12)}
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="annualRent">
+                          Annual Rent Paid
+                          <span className="text-xs text-muted-foreground ml-2">(Optional, for rent relief)</span>
+                        </Label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">₦</span>
+                          <Input
+                            id="annualRent"
+                            type="number"
+                            placeholder="0"
+                            value={annualRent}
+                            onChange={(e) => setAnnualRent(e.target.value)}
+                            className="pl-8"
+                          />
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          Rent Relief: 20% of rent, max ₦500,000
+                        </p>
+                      </div>
+                      
+                      {/* Info Box */}
+                      <div className="flex gap-3 p-3 rounded-lg bg-muted/50">
+                        <Info className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                        <div className="text-sm text-muted-foreground">
+                          <strong>2026 PAYE:</strong> ₦800,000 tax-free threshold with progressive rates from 15% to 25%.
+                          Deductions include 8% pension, 2.5% NHF, and rent relief.
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                
+                <TabsContent value="import" className="mt-4">
+                  <StatementImport onIncomeDetected={handleStatementIncome} />
+                </TabsContent>
+              </Tabs>
+            ) : (
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <Building2 className="h-5 w-5 text-primary" />
+                    <div>
+                      <CardTitle>Business Details</CardTitle>
+                      <CardDescription>
+                        Enter your annual business turnover
+                      </CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="monthlyIncome">Monthly Gross Income</Label>
+                    <Label htmlFor="annualTurnover">Annual Business Turnover</Label>
                     <div className="relative">
                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">₦</span>
                       <Input
-                        id="monthlyIncome"
+                        id="annualTurnover"
                         type="number"
                         placeholder="0"
-                        value={monthlyIncome}
-                        onChange={(e) => setMonthlyIncome(e.target.value)}
+                        value={annualTurnover}
+                        onChange={(e) => setAnnualTurnover(e.target.value)}
                         className="pl-8"
                       />
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      Annual: {formatNaira((parseFloat(monthlyIncome) || 0) * 12)}
+                      Businesses with turnover ≤ ₦100M are CIT exempt
                     </p>
                   </div>
                   
-                  <div className="space-y-2">
-                    <Label htmlFor="annualRent">
-                      Annual Rent Paid
-                      <span className="text-xs text-muted-foreground ml-2">(Optional, for rent relief)</span>
-                    </Label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">₦</span>
-                      <Input
-                        id="annualRent"
-                        type="number"
-                        placeholder="0"
-                        value={annualRent}
-                        onChange={(e) => setAnnualRent(e.target.value)}
-                        className="pl-8"
-                      />
-                    </div>
-                    <p className="text-xs text-muted-foreground">
-                      Rent Relief: 20% of rent, max ₦500,000
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <div className="space-y-2">
-                  <Label htmlFor="annualTurnover">Annual Business Turnover</Label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">₦</span>
-                    <Input
-                      id="annualTurnover"
-                      type="number"
-                      placeholder="0"
-                      value={annualTurnover}
-                      onChange={(e) => setAnnualTurnover(e.target.value)}
-                      className="pl-8"
-                    />
-                  </div>
-                  <p className="text-xs text-muted-foreground">
-                    Businesses with turnover ≤ ₦100M are CIT exempt
-                  </p>
-                </div>
-              )}
-              
-              {/* Info Box */}
-              <div className="flex gap-3 p-3 rounded-lg bg-muted/50">
-                <Info className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <div className="text-sm text-muted-foreground">
-                  {isIndividual ? (
-                    <>
-                      <strong>2026 PAYE:</strong> ₦800,000 tax-free threshold with progressive rates from 15% to 25%.
-                      Deductions include 8% pension, 2.5% NHF, and rent relief.
-                    </>
-                  ) : (
-                    <>
+                  {/* Info Box */}
+                  <div className="flex gap-3 p-3 rounded-lg bg-muted/50">
+                    <Info className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <div className="text-sm text-muted-foreground">
                       <strong>2026 CIT:</strong> 30% Company Income Tax applies to businesses with turnover above ₦100 million.
                       Small businesses are exempt.
-                    </>
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
           
           {/* Results Section */}
           <div className="space-y-4">
