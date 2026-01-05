@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { formatNaira } from '@/lib/tax-calculator';
-import { CreditCard, Download, Filter, Receipt, Search } from 'lucide-react';
+import { TaxReceipt } from './TaxReceipt';
+import { CreditCard, Download, Receipt, Search, FileText } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 export function PaymentHistory() {
@@ -14,6 +15,8 @@ export function PaymentHistory() {
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [selectedPayment, setSelectedPayment] = useState<typeof state.payments[0] | null>(null);
+  const [receiptOpen, setReceiptOpen] = useState(false);
   
   const payments = state.payments;
   
@@ -181,23 +184,49 @@ export function PaymentHistory() {
                     </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="font-semibold">{formatNaira(payment.amount)}</p>
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    payment.status === 'paid' 
-                      ? 'bg-accent/10 text-accent'
-                      : payment.status === 'pending'
-                      ? 'bg-warning/10 text-warning'
-                      : 'bg-destructive/10 text-destructive'
-                  }`}>
-                    {payment.status}
-                  </span>
+                <div className="flex items-center gap-3">
+                  <div className="text-right">
+                    <p className="font-semibold">{formatNaira(payment.amount)}</p>
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${
+                      payment.status === 'paid' 
+                        ? 'bg-accent/10 text-accent'
+                        : payment.status === 'pending'
+                        ? 'bg-warning/10 text-warning'
+                        : 'bg-destructive/10 text-destructive'
+                    }`}>
+                      {payment.status}
+                    </span>
+                  </div>
+                  {payment.status === 'paid' && (
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="gap-1"
+                      onClick={() => {
+                        setSelectedPayment(payment);
+                        setReceiptOpen(true);
+                      }}
+                    >
+                      <FileText className="h-4 w-4" />
+                      Receipt
+                    </Button>
+                  )}
                 </div>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
+      
+      {/* Receipt Modal */}
+      {selectedPayment && (
+        <TaxReceipt
+          open={receiptOpen}
+          onOpenChange={setReceiptOpen}
+          payment={selectedPayment}
+          userType={state.userType}
+        />
+      )}
     </div>
   );
 }

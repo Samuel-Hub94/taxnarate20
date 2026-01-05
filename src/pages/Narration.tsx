@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { formatNaira } from '@/lib/tax-calculator';
+import { VoiceNarration } from '@/components/narration/VoiceNarration';
 import { 
   Brain, 
   Volume2,
@@ -280,7 +281,30 @@ export default function Narration() {
         </div>
         
         {/* Voice Explanation - Secure+ Only */}
-        {!isSecurePlusMode && (
+        {isSecurePlusMode ? (
+          <Card className="border-accent/20 bg-gradient-to-r from-accent/5 to-transparent">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <Volume2 className="h-5 w-5 text-accent" />
+                <div>
+                  <CardTitle>Voice Explanations</CardTitle>
+                  <CardDescription>Listen to tax explanations in your preferred language</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Select a narration type above, then use the voice feature to hear the explanation 
+                  in English, Pidgin, Yoruba, Hausa, or Igbo.
+                </p>
+                <VoiceNarration 
+                  text={selectedNarration?.explanation || "Select a transaction type to hear the explanation."} 
+                />
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
           <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
             <CardContent className="p-4">
               <div className="flex items-center gap-4">
@@ -291,10 +315,12 @@ export default function Narration() {
                     Listen in Pidgin, Yoruba, Hausa, and Igbo with Secure+
                   </p>
                 </div>
-                <Button variant="outline" size="sm" className="gap-1">
-                  <ChevronUp className="h-4 w-4" />
-                  Secure+
-                </Button>
+                <Link to="/settings">
+                  <Button variant="outline" size="sm" className="gap-1">
+                    <ChevronUp className="h-4 w-4" />
+                    Secure+
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>
