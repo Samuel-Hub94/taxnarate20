@@ -51,10 +51,12 @@ export default function Dashboard() {
           </div>
           
           {state.currentMode !== 'secure_plus' && (
-            <Button className="gap-2">
-              <ChevronUp className="h-4 w-4" />
-              Upgrade to {state.currentMode === 'lite' ? 'Secure' : 'Secure+'}
-            </Button>
+            <Link to="/settings">
+              <Button className="gap-2">
+                <ChevronUp className="h-4 w-4" />
+                Upgrade to {state.currentMode === 'lite' ? 'Secure' : 'Secure+'}
+              </Button>
+            </Link>
           )}
         </div>
         
@@ -87,9 +89,11 @@ export default function Dashboard() {
                   ))}
                 </div>
               </div>
-              <Button variant="outline" className="shrink-0">
-                View Full Report
-              </Button>
+              <Link to="/reports">
+                <Button variant="outline" className="shrink-0">
+                  View Full Report
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>
@@ -283,8 +287,12 @@ export default function Dashboard() {
                   </div>
                   {!isLiteMode && !state.business.isExempt && (
                     <div className="flex gap-2 mt-4">
-                      <Button size="sm" className="flex-1">Pay Now</Button>
-                      <Button size="sm" variant="outline">Auto-Pay</Button>
+                      <Link to="/payments" className="flex-1">
+                        <Button size="sm" className="w-full">Pay Now</Button>
+                      </Link>
+                      <Link to="/payments">
+                        <Button size="sm" variant="outline">Auto-Pay</Button>
+                      </Link>
                     </div>
                   )}
                 </CardContent>
@@ -320,8 +328,12 @@ export default function Dashboard() {
                   </div>
                   {!isLiteMode && (
                     <div className="flex gap-2 mt-4">
-                      <Button size="sm" variant="outline" className="flex-1">Manage Employees</Button>
-                      <Button size="sm" className="flex-1">Pay Payroll Tax</Button>
+                      <Link to="/payments" className="flex-1">
+                        <Button size="sm" variant="outline" className="w-full">Manage Employees</Button>
+                      </Link>
+                      <Link to="/payments" className="flex-1">
+                        <Button size="sm" className="w-full">Pay Payroll Tax</Button>
+                      </Link>
                     </div>
                   )}
                 </CardContent>
@@ -352,10 +364,12 @@ export default function Dashboard() {
                     {isIndividual ? '₦5,000' : '₦50,000'}
                   </div>
                   <div className="text-xs text-muted-foreground mb-3">/year</div>
-                  <Button size="lg" className="gap-2">
-                    <ChevronUp className="h-4 w-4" />
-                    Upgrade Now
-                  </Button>
+                  <Link to="/settings">
+                    <Button size="lg" className="gap-2">
+                      <ChevronUp className="h-4 w-4" />
+                      Upgrade Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </CardContent>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useTaxNarrate } from '@/contexts/TaxNarrateContext';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -48,10 +49,12 @@ export default function Reports() {
                   <span className="text-sm font-normal text-muted-foreground">/year</span>
                 </div>
               </div>
-              <Button size="lg" className="gap-2">
-                <ChevronUp className="h-4 w-4" />
-                Upgrade to Secure+
-              </Button>
+              <Link to="/settings">
+                <Button size="lg" className="gap-2">
+                  <ChevronUp className="h-4 w-4" />
+                  Upgrade to Secure+
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
