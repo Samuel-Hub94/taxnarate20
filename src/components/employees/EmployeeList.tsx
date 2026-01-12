@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { formatNaira } from '@/lib/tax-calculator';
 import { Users, Plus, Pencil, Trash2, User } from 'lucide-react';
 import { EmployeeForm } from './EmployeeForm';
+import { CSVEmployeeImport } from './CSVEmployeeImport';
 import { useToast } from '@/hooks/use-toast';
 
 interface EmployeeListProps {
@@ -57,13 +58,15 @@ export function EmployeeList({ onPayPayroll }: EmployeeListProps) {
                 <CardDescription>Manage your payroll</CardDescription>
               </div>
             </div>
-            <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
-              <DialogTrigger asChild>
-                <Button size="sm" className="gap-2" disabled={!canAddMore}>
-                  <Plus className="h-4 w-4" />
-                  Add Employee
-                </Button>
-              </DialogTrigger>
+            <div className="flex items-center gap-2">
+              <CSVEmployeeImport />
+              <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button size="sm" className="gap-2" disabled={!canAddMore}>
+                    <Plus className="h-4 w-4" />
+                    Add Employee
+                  </Button>
+                </DialogTrigger>
               <DialogContent className="max-w-lg">
                 <DialogHeader>
                   <DialogTitle>Add Employee</DialogTitle>
@@ -76,7 +79,8 @@ export function EmployeeList({ onPayPayroll }: EmployeeListProps) {
                   onCancel={() => setAddDialogOpen(false)}
                 />
               </DialogContent>
-            </Dialog>
+              </Dialog>
+            </div>
           </div>
         </CardHeader>
         <CardContent>
