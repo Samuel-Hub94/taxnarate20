@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { useTaxNarrate } from '@/contexts/TaxNarrateContext';
 import { ModeBadge } from '@/components/ui/mode-badge';
 import { UserTypeToggle } from '@/components/ui/user-type-toggle';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import {
   Home,
@@ -196,6 +197,7 @@ export function MobileHeader() {
         
         <div className="flex items-center gap-2">
           <ModeBadge />
+          <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"

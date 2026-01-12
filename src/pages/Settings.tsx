@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTaxNarrate, UserMode } from '@/contexts/TaxNarrateContext';
+import { useTheme } from '@/components/theme/ThemeProvider';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -18,12 +19,17 @@ import {
   CheckCircle2,
   Trash2,
   Plus,
-  RefreshCw
+  RefreshCw,
+  Sun,
+  Moon,
+  Monitor,
+  Palette
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 export default function Settings() {
   const { state, dispatch, setMode } = useTaxNarrate();
+  const { theme, setTheme } = useTheme();
   const { toast } = useToast();
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
   const [selectedUpgrade, setSelectedUpgrade] = useState<UserMode | null>(null);
@@ -261,6 +267,50 @@ export default function Settings() {
             </CardContent>
           </Card>
         )}
+        
+        {/* Appearance */}
+        <Card>
+          <CardHeader>
+            <div className="flex items-center gap-3">
+              <Palette className="h-5 w-5 text-primary" />
+              <div>
+                <CardTitle>Appearance</CardTitle>
+                <CardDescription>Customize how TaxNarrate looks</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <Label className="mb-3 block">Theme</Label>
+              <div className="grid grid-cols-3 gap-3">
+                <Button
+                  variant={theme === 'light' ? 'default' : 'outline'}
+                  className="flex flex-col gap-2 h-auto py-4"
+                  onClick={() => setTheme('light')}
+                >
+                  <Sun className="h-5 w-5" />
+                  <span className="text-xs">Light</span>
+                </Button>
+                <Button
+                  variant={theme === 'dark' ? 'default' : 'outline'}
+                  className="flex flex-col gap-2 h-auto py-4"
+                  onClick={() => setTheme('dark')}
+                >
+                  <Moon className="h-5 w-5" />
+                  <span className="text-xs">Dark</span>
+                </Button>
+                <Button
+                  variant={theme === 'system' ? 'default' : 'outline'}
+                  className="flex flex-col gap-2 h-auto py-4"
+                  onClick={() => setTheme('system')}
+                >
+                  <Monitor className="h-5 w-5" />
+                  <span className="text-xs">System</span>
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
         
         {/* Notifications */}
         <Card>
