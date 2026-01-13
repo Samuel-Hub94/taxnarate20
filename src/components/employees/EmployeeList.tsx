@@ -7,6 +7,7 @@ import { formatNaira } from '@/lib/tax-calculator';
 import { Users, Plus, Pencil, Trash2, User } from 'lucide-react';
 import { EmployeeForm } from './EmployeeForm';
 import { CSVEmployeeImport } from './CSVEmployeeImport';
+import { PayrollExport } from './PayrollExport';
 import { useToast } from '@/hooks/use-toast';
 
 interface EmployeeListProps {
@@ -59,6 +60,7 @@ export function EmployeeList({ onPayPayroll }: EmployeeListProps) {
               </div>
             </div>
             <div className="flex items-center gap-2">
+              <PayrollExport />
               <CSVEmployeeImport />
               <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
                 <DialogTrigger asChild>

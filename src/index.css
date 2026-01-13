@@ -219,6 +219,10 @@
   .status-overdue {
     @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-destructive/10 text-destructive;
   }
+
+  .status-failed {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-destructive/10 text-destructive;
+  }
 }
 
 @layer utilities {
