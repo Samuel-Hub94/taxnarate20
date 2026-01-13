@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ModeBadge } from '@/components/ui/mode-badge';
+import { EmailNotificationSettings } from '@/components/notifications/EmailNotificationSettings';
 import { formatNaira } from '@/lib/tax-calculator';
 import { 
   Settings as SettingsIcon, 
@@ -312,49 +313,8 @@ export default function Settings() {
           </CardContent>
         </Card>
         
-        {/* Notifications */}
-        <Card>
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <Bell className="h-5 w-5 text-primary" />
-              <div>
-                <CardTitle>Notifications</CardTitle>
-                <CardDescription>Manage your notification preferences</CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <Label>Payment Reminders</Label>
-                <p className="text-sm text-muted-foreground">
-                  Get notified before tax payments are due
-                </p>
-              </div>
-              <Switch defaultChecked />
-            </div>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div>
-                <Label>Compliance Alerts</Label>
-                <p className="text-sm text-muted-foreground">
-                  Updates about your compliance status
-                </p>
-              </div>
-              <Switch defaultChecked />
-            </div>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div>
-                <Label>Product Updates</Label>
-                <p className="text-sm text-muted-foreground">
-                  News about new features and improvements
-                </p>
-              </div>
-              <Switch />
-            </div>
-          </CardContent>
-        </Card>
+        {/* Email Notifications */}
+        <EmailNotificationSettings />
         
         {/* Upgrade Dialog */}
         <Dialog open={upgradeDialogOpen} onOpenChange={setUpgradeDialogOpen}>
