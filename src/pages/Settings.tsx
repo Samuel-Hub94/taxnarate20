@@ -10,6 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ModeBadge } from '@/components/ui/mode-badge';
 import { EmailNotificationSettings } from '@/components/notifications/EmailNotificationSettings';
+import { SMSNotificationSettings } from '@/components/notifications/SMSNotificationSettings';
 import { formatNaira } from '@/lib/tax-calculator';
 import { 
   Settings as SettingsIcon, 
@@ -315,6 +316,9 @@ export default function Settings() {
         
         {/* Email Notifications */}
         <EmailNotificationSettings />
+        
+        {/* SMS Notifications */}
+        <SMSNotificationSettings />
         
         {/* Upgrade Dialog */}
         <Dialog open={upgradeDialogOpen} onOpenChange={setUpgradeDialogOpen}>

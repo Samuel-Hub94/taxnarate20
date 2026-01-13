@@ -8,6 +8,7 @@ import { Users, Plus, Pencil, Trash2, User } from 'lucide-react';
 import { EmployeeForm } from './EmployeeForm';
 import { CSVEmployeeImport } from './CSVEmployeeImport';
 import { PayrollExport } from './PayrollExport';
+import { ScheduledPayroll } from './ScheduledPayroll';
 import { useToast } from '@/hooks/use-toast';
 
 interface EmployeeListProps {
@@ -180,6 +181,9 @@ export function EmployeeList({ onPayPayroll }: EmployeeListProps) {
           </CardContent>
         </Card>
       )}
+      
+      {/* Scheduled Payroll */}
+      <ScheduledPayroll />
       
       {!isSecurePlusMode && employees.length >= 45 && (
         <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-transparent">
