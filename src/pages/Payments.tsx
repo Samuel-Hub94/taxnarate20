@@ -15,6 +15,7 @@ import { EmployeeList } from '@/components/employees/EmployeeList';
 import { PayrollPaymentModal } from '@/components/employees/PayrollPaymentModal';
 import { PaymentHistory } from '@/components/payments/PaymentHistory';
 import { PayrollAnalyticsDashboard } from '@/components/analytics/PayrollAnalyticsDashboard';
+import { DepartmentAnalytics } from '@/components/analytics/DepartmentAnalytics';
 import { 
   CreditCard, 
   CheckCircle2,
@@ -183,7 +184,7 @@ export default function Payments() {
         {/* Tabs for Business */}
         {isBusiness ? (
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-5">
+            <TabsList className="grid w-full grid-cols-6">
               <TabsTrigger value="pay" className="gap-2">
                 <CreditCard className="h-4 w-4" />
                 <span className="hidden sm:inline">Pay Tax</span>
@@ -191,6 +192,10 @@ export default function Payments() {
               <TabsTrigger value="employees" className="gap-2">
                 <Users className="h-4 w-4" />
                 <span className="hidden sm:inline">Employees</span>
+              </TabsTrigger>
+              <TabsTrigger value="departments" className="gap-2">
+                <Building2 className="h-4 w-4" />
+                <span className="hidden sm:inline">Depts</span>
               </TabsTrigger>
               <TabsTrigger value="analytics" className="gap-2">
                 <BarChart3 className="h-4 w-4" />
@@ -201,7 +206,7 @@ export default function Payments() {
                 <span className="hidden sm:inline">History</span>
               </TabsTrigger>
               <TabsTrigger value="cit" className="gap-2">
-                <Building2 className="h-4 w-4" />
+                <Shield className="h-4 w-4" />
                 <span className="hidden sm:inline">CIT</span>
               </TabsTrigger>
             </TabsList>
@@ -279,6 +284,10 @@ export default function Payments() {
             
             <TabsContent value="employees" className="mt-4">
               <EmployeeList onPayPayroll={() => setPayrollModalOpen(true)} />
+            </TabsContent>
+            
+            <TabsContent value="departments" className="mt-4">
+              <DepartmentAnalytics />
             </TabsContent>
             
             <TabsContent value="analytics" className="mt-4">

@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
-import { useTaxNarrate, Employee } from '@/contexts/TaxNarrateContext';
+import { useTaxNarrate, Employee, DEPARTMENTS, Department } from '@/contexts/TaxNarrateContext';
 import { calculatePAYE2026 } from '@/lib/tax-calculator';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
@@ -12,6 +12,7 @@ import { formatNaira } from '@/lib/tax-calculator';
 interface ParsedEmployee {
   name: string;
   nin?: string;
+  department: Department;
   monthlySalary: number;
   annualRent: number;
   monthlyTax: number;
@@ -30,9 +31,9 @@ export function CSVEmployeeImport() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const downloadTemplate = () => {
-    const headers = 'Name,NIN,Monthly Salary,Annual Rent';
-    const example1 = 'John Doe,12345678901,300000,600000';
-    const example2 = 'Jane Smith,,250000,0';
+    const headers = 'Name,NIN,Department,Monthly Salary,Annual Rent';
+    const example1 = 'John Doe,12345678901,Engineering,300000,600000';
+    const example2 = 'Jane Smith,,Sales,250000,0';
     const csvContent = `${headers}\n${example1}\n${example2}`;
     
     const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -51,13 +52,17 @@ export function CSVEmployeeImport() {
     // Skip header row
     const dataLines = lines.slice(1);
     
-    return dataLines.map((line, index) => {
+    return dataLines.map((line) => {
       const values = line.split(',').map(v => v.trim().replace(/^["']|["']$/g, ''));
       
       const name = values[0] || '';
       const nin = values[1] || undefined;
-      const monthlySalary = parseFloat(values[2]) || 0;
-      const annualRent = parseFloat(values[3]) || 0;
+      const departmentRaw = values[2] || 'Other';
+      const department = DEPARTMENTS.includes(departmentRaw as Department) 
+        ? (departmentRaw as Department) 
+        : 'Other';
+      const monthlySalary = parseFloat(values[3]) || 0;
+      const annualRent = parseFloat(values[4]) || 0;
       
       // Validate
       const errors: string[] = [];
@@ -75,6 +80,7 @@ export function CSVEmployeeImport() {
       return {
         name,
         nin,
+        department,
         monthlySalary,
         annualRent,
         monthlyTax,
@@ -136,6 +142,7 @@ export function CSVEmployeeImport() {
         id: `EMP-${Date.now()}-${index}`,
         name: emp.name,
         nin: emp.nin,
+        department: emp.department,
         monthlySalary: emp.monthlySalary,
         annualRent: emp.annualRent,
         monthlyTax: emp.monthlyTax,
@@ -212,7 +219,7 @@ export function CSVEmployeeImport() {
               <Upload className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
               <p className="font-medium">Click to upload CSV</p>
               <p className="text-sm text-muted-foreground">
-                Columns: Name, NIN (optional), Monthly Salary, Annual Rent
+                Columns: Name, NIN (optional), Department, Monthly Salary, Annual Rent
               </p>
             </label>
           </div>

@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { useTaxNarrate, Employee } from '@/contexts/TaxNarrateContext';
+import { useState, useMemo } from 'react';
+import { useTaxNarrate, Employee, Department, DEPARTMENTS } from '@/contexts/TaxNarrateContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { formatNaira } from '@/lib/tax-calculator';
-import { Users, Plus, Pencil, Trash2, User } from 'lucide-react';
+import { Users, Plus, Pencil, Trash2, User, Building2, Filter } from 'lucide-react';
 import { EmployeeForm } from './EmployeeForm';
 import { CSVEmployeeImport } from './CSVEmployeeImport';
 import { PayrollExport } from './PayrollExport';
@@ -20,9 +21,27 @@ export function EmployeeList({ onPayPayroll }: EmployeeListProps) {
   const { toast } = useToast();
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
+  const [departmentFilter, setDepartmentFilter] = useState<Department | 'all'>('all');
   
   const employees = state.business.employees;
   const activeEmployees = employees.filter(e => e.status === 'active');
+  
+  // Filter by department
+  const filteredEmployees = useMemo(() => {
+    if (departmentFilter === 'all') return employees;
+    return employees.filter(e => e.department === departmentFilter);
+  }, [employees, departmentFilter]);
+  
+  // Get unique departments with counts
+  const departmentCounts = useMemo(() => {
+    const counts = new Map<Department, number>();
+    activeEmployees.forEach(e => {
+      const dept = e.department || 'Other';
+      counts.set(dept, (counts.get(dept) || 0) + 1);
+    });
+    return counts;
+  }, [activeEmployees]);
+  
   const totalMonthlyTax = activeEmployees.reduce((sum, e) => sum + e.monthlyTax, 0);
   const totalAnnualTax = activeEmployees.reduce((sum, e) => sum + e.annualTax, 0);
   
@@ -57,10 +76,31 @@ export function EmployeeList({ onPayPayroll }: EmployeeListProps) {
               <Users className="h-5 w-5 text-accent" />
               <div>
                 <CardTitle>Employees ({activeEmployees.length})</CardTitle>
-                <CardDescription>Manage your payroll</CardDescription>
+                <CardDescription>
+                  {departmentCounts.size > 0 && (
+                    <span>{departmentCounts.size} department{departmentCounts.size > 1 ? 's' : ''}</span>
+                  )}
+                </CardDescription>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              {/* Department Filter */}
+              {departmentCounts.size > 1 && (
+                <Select value={departmentFilter} onValueChange={(val) => setDepartmentFilter(val as Department | 'all')}>
+                  <SelectTrigger className="w-[160px] h-9">
+                    <Filter className="h-4 w-4 mr-2" />
+                    <SelectValue placeholder="All Departments" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Departments</SelectItem>
+                    {Array.from(departmentCounts.entries()).map(([dept, count]) => (
+                      <SelectItem key={dept} value={dept}>
+                        {dept} ({count})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
               <PayrollExport />
               <CSVEmployeeImport />
               <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
@@ -97,7 +137,7 @@ export function EmployeeList({ onPayPayroll }: EmployeeListProps) {
             </div>
           ) : (
             <div className="space-y-3">
-              {employees.map((employee) => (
+              {filteredEmployees.map((employee) => (
                 <div 
                   key={employee.id}
                   className="flex items-center justify-between p-3 rounded-lg border hover:border-muted-foreground/30 transition-smooth"
@@ -108,9 +148,15 @@ export function EmployeeList({ onPayPayroll }: EmployeeListProps) {
                     </div>
                     <div>
                       <p className="font-medium">{employee.name}</p>
-                      <div className="flex gap-4 text-xs text-muted-foreground">
-                        <span>Salary: {formatNaira(employee.monthlySalary)}/mo</span>
-                        <span>Tax: {formatNaira(employee.monthlyTax)}/mo</span>
+                      <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <Building2 className="h-3 w-3" />
+                          {employee.department || 'Other'}
+                        </span>
+                        <span>•</span>
+                        <span>{formatNaira(employee.monthlySalary)}/mo</span>
+                        <span>•</span>
+                        <span className="text-primary">Tax: {formatNaira(employee.monthlyTax)}/mo</span>
                       </div>
                     </div>
                   </div>
