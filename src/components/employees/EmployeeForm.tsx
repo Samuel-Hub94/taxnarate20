@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useTaxNarrate, Employee } from '@/contexts/TaxNarrateContext';
+import { useState } from 'react';
+import { useTaxNarrate, Employee, DEPARTMENTS, Department } from '@/contexts/TaxNarrateContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { calculatePAYE2026, formatNaira } from '@/lib/tax-calculator';
 
 interface EmployeeFormProps {
@@ -16,6 +17,7 @@ export function EmployeeForm({ employee, onSuccess, onCancel }: EmployeeFormProp
   
   const [name, setName] = useState(employee?.name || '');
   const [nin, setNin] = useState(employee?.nin || '');
+  const [department, setDepartment] = useState<Department>(employee?.department || 'Other');
   const [monthlySalary, setMonthlySalary] = useState(employee?.monthlySalary?.toString() || '');
   const [annualRent, setAnnualRent] = useState(employee?.annualRent?.toString() || '');
   
@@ -36,6 +38,7 @@ export function EmployeeForm({ employee, onSuccess, onCancel }: EmployeeFormProp
       updateEmployee(employee.id, {
         name: name.trim(),
         nin: nin.trim() || undefined,
+        department,
         monthlySalary: salary,
         annualRent: rent,
         monthlyTax,
@@ -46,6 +49,7 @@ export function EmployeeForm({ employee, onSuccess, onCancel }: EmployeeFormProp
         id: `EMP-${Date.now()}`,
         name: name.trim(),
         nin: nin.trim() || undefined,
+        department,
         monthlySalary: salary,
         annualRent: rent,
         monthlyTax,
@@ -79,6 +83,20 @@ export function EmployeeForm({ employee, onSuccess, onCancel }: EmployeeFormProp
           placeholder="Enter 11-digit NIN"
           maxLength={11}
         />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="department">Department *</Label>
+        <Select value={department} onValueChange={(val) => setDepartment(val as Department)}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select department" />
+          </SelectTrigger>
+          <SelectContent>
+            {DEPARTMENTS.map((dept) => (
+              <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
       
       <div className="space-y-2">

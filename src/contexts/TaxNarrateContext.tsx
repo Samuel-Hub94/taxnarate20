@@ -23,10 +23,26 @@ export interface Payment {
   description: string;
 }
 
+export const DEPARTMENTS = [
+  'Engineering',
+  'Sales',
+  'Marketing',
+  'Finance',
+  'Human Resources',
+  'Operations',
+  'Customer Support',
+  'Legal',
+  'Executive',
+  'Other',
+] as const;
+
+export type Department = typeof DEPARTMENTS[number];
+
 export interface Employee {
   id: string;
   name: string;
   nin?: string;
+  department: Department;
   monthlySalary: number;
   annualRent: number;
   monthlyTax: number;
