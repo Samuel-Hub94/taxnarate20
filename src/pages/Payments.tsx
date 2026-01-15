@@ -14,6 +14,7 @@ import { formatNaira, calculateMonthlyInstallment, calculateQuarterlyInstallment
 import { EmployeeList } from '@/components/employees/EmployeeList';
 import { PayrollPaymentModal } from '@/components/employees/PayrollPaymentModal';
 import { PaymentHistory } from '@/components/payments/PaymentHistory';
+import { PayrollAnalyticsDashboard } from '@/components/analytics/PayrollAnalyticsDashboard';
 import { 
   CreditCard, 
   CheckCircle2,
@@ -24,7 +25,8 @@ import {
   Lock,
   Shield,
   Building2,
-  Users
+  Users,
+  BarChart3
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -181,22 +183,26 @@ export default function Payments() {
         {/* Tabs for Business */}
         {isBusiness ? (
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="pay" className="gap-2">
                 <CreditCard className="h-4 w-4" />
-                Pay Tax
+                <span className="hidden sm:inline">Pay Tax</span>
               </TabsTrigger>
               <TabsTrigger value="employees" className="gap-2">
                 <Users className="h-4 w-4" />
-                Employees
+                <span className="hidden sm:inline">Employees</span>
+              </TabsTrigger>
+              <TabsTrigger value="analytics" className="gap-2">
+                <BarChart3 className="h-4 w-4" />
+                <span className="hidden sm:inline">Analytics</span>
               </TabsTrigger>
               <TabsTrigger value="history" className="gap-2">
                 <Clock className="h-4 w-4" />
-                History
+                <span className="hidden sm:inline">History</span>
               </TabsTrigger>
               <TabsTrigger value="cit" className="gap-2">
                 <Building2 className="h-4 w-4" />
-                CIT
+                <span className="hidden sm:inline">CIT</span>
               </TabsTrigger>
             </TabsList>
             
@@ -273,6 +279,10 @@ export default function Payments() {
             
             <TabsContent value="employees" className="mt-4">
               <EmployeeList onPayPayroll={() => setPayrollModalOpen(true)} />
+            </TabsContent>
+            
+            <TabsContent value="analytics" className="mt-4">
+              <PayrollAnalyticsDashboard />
             </TabsContent>
             
             <TabsContent value="history" className="mt-4">
