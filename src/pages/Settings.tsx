@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { ModeBadge } from '@/components/ui/mode-badge';
 import { EmailNotificationSettings } from '@/components/notifications/EmailNotificationSettings';
 import { SMSNotificationSettings } from '@/components/notifications/SMSNotificationSettings';
+import { PushNotificationSettings } from '@/components/notifications/PushNotificationSettings';
 import { formatNaira } from '@/lib/tax-calculator';
 import { 
   Settings as SettingsIcon, 
@@ -313,6 +314,9 @@ export default function Settings() {
             </div>
           </CardContent>
         </Card>
+        
+        {/* Push Notifications */}
+        <PushNotificationSettings />
         
         {/* Email Notifications */}
         <EmailNotificationSettings />
