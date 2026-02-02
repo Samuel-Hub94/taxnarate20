@@ -7,16 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModeBadge } from '@/components/ui/mode-badge';
 import { EmailNotificationSettings } from '@/components/notifications/EmailNotificationSettings';
 import { SMSNotificationSettings } from '@/components/notifications/SMSNotificationSettings';
 import { PushNotificationSettings } from '@/components/notifications/PushNotificationSettings';
+import { DocumentUpload } from '@/components/documents/DocumentUpload';
 import { formatNaira } from '@/lib/tax-calculator';
 import { 
-  Settings as SettingsIcon, 
   CreditCard,
-  Bell,
   Shield,
   ChevronUp,
   CheckCircle2,
@@ -314,6 +313,9 @@ export default function Settings() {
             </div>
           </CardContent>
         </Card>
+        
+        {/* Document Storage */}
+        <DocumentUpload />
         
         {/* Push Notifications */}
         <PushNotificationSettings />
