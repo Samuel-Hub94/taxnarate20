@@ -9,43 +9,102 @@
 
 @layer base {
   :root {
-    /* TaxNarrate Brand Colors */
-    --navy: 221 72% 21%; /* #0A2463 - Deep Navy Primary */
-    --navy-light: 221 60% 30%;
-    --navy-dark: 221 72% 15%;
-    
-    --success: 160 84% 39%; /* #10B981 - Success Green */
-    --success-light: 160 84% 50%;
-    --success-dark: 160 84% 30%;
-    
-    --warning: 38 92% 50%; /* #F59E0B - Warning Amber */
-    --warning-light: 38 92% 60%;
-    --warning-dark: 38 92% 40%;
-    
-    /* Light Slate Background */
-    --soft-slate: 210 40% 98%;
-    --soft-slate-dark: 222 47% 11%;
-    
-    /* Semantic Colors */
+    /* TaxNarrate Dark Theme - Professional Corporate */
+    --background: 210 5% 12%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 8% 16%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 8% 18%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 355 78% 48%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 5% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 5% 22%;
+    --muted-foreground: 210 10% 60%;
+
+    --accent: 355 78% 48%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 5% 28%;
+    --input: 210 5% 22%;
+    --ring: 355 78% 48%;
+
+    --radius: 0.75rem;
+
+    /* Environment Colors */
+    --env-production: 0 84% 60%;
+    --env-test: 45 93% 47%;
+    --env-portal: 217 91% 60%;
+    --env-dr: 25 95% 53%;
+
+    /* Credential Colors */
+    --cred-rdp: 355 78% 48%;
+    --cred-vpn: 262 83% 58%;
+    --cred-server: 217 91% 60%;
+    --cred-database: 45 93% 47%;
+    --cred-portal: 330 81% 60%;
+    --cred-other: 210 10% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 8% 14%) 0%, hsl(210 5% 10%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(210 8% 18%) 0%, hsl(210 5% 14%) 50%, hsl(355 40% 20%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(210 8% 18% / 0.8) 0%, hsl(210 5% 12% / 0.9) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(355 78% 48% / 0.15) 0%, transparent 60%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(210 5% 5% / 0.3);
+    --shadow-md: 0 4px 20px hsl(210 5% 5% / 0.4);
+    --shadow-lg: 0 8px 40px hsl(210 5% 5% / 0.5);
+    --shadow-glow: 0 0 30px hsl(355 78% 48% / 0.2);
+
+    /* Success/Warning for Tax */
+    --success: 160 84% 39%;
+    --warning: 38 92% 50%;
+
+    /* Sidebar */
+    --sidebar-background: 210 5% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 355 78% 48%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 5% 22%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 5% 22%;
+    --sidebar-ring: 355 78% 48%;
+
+    /* Transition */
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Dark mode is now the default - light mode variant */
+  .light {
     --background: 210 40% 98%;
-    --foreground: 221 72% 21%;
+    --foreground: 210 5% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 221 72% 21%;
+    --card-foreground: 210 5% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 221 72% 21%;
+    --popover-foreground: 210 5% 12%;
 
-    --primary: 221 72% 21%;
+    --primary: 355 78% 48%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 20% 96%;
-    --secondary-foreground: 221 72% 21%;
+    --secondary-foreground: 210 5% 12%;
 
     --muted: 210 20% 94%;
-    --muted-foreground: 215 16% 47%;
+    --muted-foreground: 210 10% 40%;
 
-    --accent: 160 84% 39%;
+    --accent: 355 78% 48%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -53,71 +112,16 @@
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 221 72% 21%;
+    --ring: 355 78% 48%;
 
-    --radius: 0.5rem;
-
-    /* Mode Badge Colors */
-    --mode-lite: 215 16% 47%;
-    --mode-secure: 221 72% 21%;
-    --mode-secure-plus: 160 84% 39%;
-
-    /* Risk Level Colors */
-    --risk-low: 160 84% 39%;
-    --risk-medium: 38 92% 50%;
-    --risk-high: 0 84% 60%;
-
-    /* Sidebar */
-    --sidebar-background: 221 72% 21%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 160 84% 39%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 221 60% 30%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 221 60% 25%;
-    --sidebar-ring: 160 84% 39%;
-
-    /* Transition */
-    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-
-    --card: 221 72% 12%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 221 72% 12%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 160 84% 39%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 221 50% 18%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 221 50% 18%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 160 84% 39%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 95%;
-
-    --border: 221 50% 20%;
-    --input: 221 50% 20%;
-    --ring: 160 84% 39%;
-
-    --sidebar-background: 221 72% 10%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 160 84% 39%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 221 60% 18%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 221 50% 18%;
-    --sidebar-ring: 160 84% 39%;
+    --sidebar-background: 210 5% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 355 78% 48%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 5% 22%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 5% 22%;
+    --sidebar-ring: 355 78% 48%;
   }
 }
 
