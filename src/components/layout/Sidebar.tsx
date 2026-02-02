@@ -18,6 +18,8 @@ import {
   X,
 } from 'lucide-react';
 import { useState } from 'react';
+import simplexIcon from '@/assets/simplex-icon.png';
+import simplexLogo from '@/assets/simplex-logo.png';
 
 interface NavItem {
   icon: typeof Home;
@@ -49,9 +51,7 @@ export function Sidebar() {
     >
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-5 border-b border-sidebar-border">
-        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-sidebar-primary text-sidebar-primary-foreground font-bold text-sm">
-          TN
-        </div>
+        <img src={simplexIcon} alt="Simplex" className="w-8 h-8 object-contain" />
         {!isCollapsed && (
           <div className="flex flex-col">
             <span className="font-semibold text-sm">TaxNarrate</span>
@@ -118,6 +118,14 @@ export function Sidebar() {
               Upgrade
             </Button>
           </div>
+        </div>
+      )}
+      
+      {/* Sponsor */}
+      {!isCollapsed && (
+        <div className="px-4 py-3 border-t border-sidebar-border">
+          <p className="text-[10px] text-sidebar-foreground/50 mb-2 uppercase tracking-wide">Powered by</p>
+          <img src={simplexLogo} alt="Simplex Business Solutions" className="h-8 object-contain opacity-80" />
         </div>
       )}
       
@@ -189,9 +197,7 @@ export function MobileHeader() {
     <header className="lg:hidden sticky top-0 z-40 bg-card border-b">
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground font-bold text-sm">
-            TN
-          </div>
+          <img src={simplexIcon} alt="Simplex" className="w-8 h-8 object-contain" />
           <span className="font-semibold">TaxNarrate</span>
         </div>
         
