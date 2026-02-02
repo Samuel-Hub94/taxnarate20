@@ -22,12 +22,12 @@
     --warning-light: 38 92% 60%;
     --warning-dark: 38 92% 40%;
     
-    /* Soft Red for Background */
-    --soft-red: 0 70% 95%;
-    --soft-red-dark: 0 50% 12%;
+    /* Light Slate Background */
+    --soft-slate: 210 40% 98%;
+    --soft-slate-dark: 222 47% 11%;
     
     /* Semantic Colors */
-    --background: 0 70% 95%;
+    --background: 210 40% 98%;
     --foreground: 221 72% 21%;
 
     --card: 0 0% 100%;
@@ -82,8 +82,8 @@
   }
 
   .dark {
-    --background: 0 50% 12%;
-    --foreground: 0 0% 95%;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
     --card: 221 72% 12%;
     --card-foreground: 0 0% 95%;
