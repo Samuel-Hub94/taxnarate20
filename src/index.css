@@ -12,8 +12,85 @@
 */
 
 @layer base {
-  :root {
-    /* TaxNarrate Blue Theme - Professional (Default for Lite/Secure) */
+  /* ===== LITE MODE - Professional Blue ===== */
+  :root,
+  .theme-lite {
+    --background: 220 20% 97%;
+    --foreground: 220 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
+
+    --primary: 217 91% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 30% 15%;
+
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 217 91% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 90%;
+    --ring: 217 91% 55%;
+
+    --radius: 0.75rem;
+
+    /* Environment Colors */
+    --env-production: 0 84% 60%;
+    --env-test: 45 93% 47%;
+    --env-portal: 217 91% 60%;
+    --env-dr: 25 95% 53%;
+
+    /* Credential Colors */
+    --cred-rdp: 355 78% 48%;
+    --cred-vpn: 262 83% 58%;
+    --cred-server: 217 91% 60%;
+    --cred-database: 45 93% 47%;
+    --cred-portal: 330 81% 60%;
+    --cred-other: 210 10% 60%;
+
+    /* Lite Theme Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 20% 98%) 0%, hsl(220 15% 94%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(217 30% 97%) 50%, hsl(217 40% 95%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.95) 0%, hsl(220 20% 98% / 0.98) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(217 91% 55% / 0.1) 0%, transparent 60%);
+
+    /* Lite Theme Shadows */
+    --shadow-sm: 0 2px 8px hsl(220 30% 70% / 0.12);
+    --shadow-md: 0 4px 20px hsl(220 30% 70% / 0.15);
+    --shadow-lg: 0 8px 40px hsl(220 30% 70% / 0.2);
+    --shadow-glow: 0 0 30px hsl(217 91% 55% / 0.15);
+
+    /* Success/Warning for Tax */
+    --success: 160 84% 39%;
+    --warning: 38 92% 50%;
+
+    /* Sidebar - Lite Blue */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 30% 20%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 30% 22%;
+    --sidebar-ring: 217 91% 60%;
+
+    /* Transition */
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Lite Dark Mode */
+  .theme-lite.dark {
     --background: 222 47% 11%;
     --foreground: 210 40% 98%;
 
@@ -42,53 +119,110 @@
     --input: 222 30% 20%;
     --ring: 217 91% 60%;
 
-    --radius: 0.75rem;
-
-    /* Environment Colors */
-    --env-production: 0 84% 60%;
-    --env-test: 45 93% 47%;
-    --env-portal: 217 91% 60%;
-    --env-dr: 25 95% 53%;
-
-    /* Credential Colors */
-    --cred-rdp: 355 78% 48%;
-    --cred-vpn: 262 83% 58%;
-    --cred-server: 217 91% 60%;
-    --cred-database: 45 93% 47%;
-    --cred-portal: 330 81% 60%;
-    --cred-other: 210 10% 60%;
-
-    /* Blue Theme Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(222 47% 13%) 0%, hsl(222 47% 9%) 100%);
     --gradient-header: linear-gradient(135deg, hsl(222 47% 16%) 0%, hsl(222 47% 12%) 50%, hsl(217 50% 20%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(222 47% 16% / 0.8) 0%, hsl(222 47% 11% / 0.9) 100%);
     --gradient-glow: radial-gradient(circle at 50% 0%, hsl(217 91% 60% / 0.15) 0%, transparent 60%);
 
-    /* Blue Theme Shadows */
     --shadow-sm: 0 2px 8px hsl(222 47% 5% / 0.3);
     --shadow-md: 0 4px 20px hsl(222 47% 5% / 0.4);
     --shadow-lg: 0 8px 40px hsl(222 47% 5% / 0.5);
     --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.2);
-
-    /* Success/Warning for Tax */
-    --success: 160 84% 39%;
-    --warning: 38 92% 50%;
-
-    /* Sidebar - Blue theme sidebar */
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 222 30% 20%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 30% 22%;
-    --sidebar-ring: 217 91% 60%;
-
-    /* Transition */
-    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Secure+ Premium Dark Theme - Exclusive Executive Experience */
+  /* ===== SECURE MODE - Teal/Emerald Theme ===== */
+  .theme-secure {
+    --background: 170 25% 97%;
+    --foreground: 170 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 170 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 170 30% 12%;
+
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 170 15% 92%;
+    --secondary-foreground: 170 30% 12%;
+
+    --muted: 170 15% 94%;
+    --muted-foreground: 170 10% 45%;
+
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 170 15% 88%;
+    --input: 170 15% 90%;
+    --ring: 160 84% 39%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(170 25% 98%) 0%, hsl(170 15% 94%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(160 30% 97%) 50%, hsl(160 40% 95%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.95) 0%, hsl(170 20% 98% / 0.98) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(160 84% 39% / 0.1) 0%, transparent 60%);
+
+    --shadow-sm: 0 2px 8px hsl(170 30% 70% / 0.12);
+    --shadow-md: 0 4px 20px hsl(170 30% 70% / 0.15);
+    --shadow-lg: 0 8px 40px hsl(170 30% 70% / 0.2);
+    --shadow-glow: 0 0 30px hsl(160 84% 39% / 0.15);
+
+    /* Sidebar - Secure Teal */
+    --sidebar-background: 170 40% 12%;
+    --sidebar-foreground: 170 20% 98%;
+    --sidebar-primary: 160 84% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 170 30% 20%;
+    --sidebar-accent-foreground: 170 20% 98%;
+    --sidebar-border: 170 30% 22%;
+    --sidebar-ring: 160 84% 45%;
+  }
+
+  /* Secure Dark Mode */
+  .theme-secure.dark {
+    --background: 170 40% 10%;
+    --foreground: 170 20% 98%;
+
+    --card: 170 35% 14%;
+    --card-foreground: 170 20% 98%;
+
+    --popover: 170 35% 16%;
+    --popover-foreground: 170 20% 98%;
+
+    --primary: 160 84% 45%;
+    --primary-foreground: 170 40% 10%;
+
+    --secondary: 170 30% 20%;
+    --secondary-foreground: 170 20% 98%;
+
+    --muted: 170 30% 18%;
+    --muted-foreground: 170 20% 60%;
+
+    --accent: 160 84% 45%;
+    --accent-foreground: 170 40% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 170 20% 98%;
+
+    --border: 170 30% 25%;
+    --input: 170 30% 20%;
+    --ring: 160 84% 45%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(170 40% 12%) 0%, hsl(170 40% 8%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(170 35% 16%) 0%, hsl(170 40% 12%) 50%, hsl(160 45% 18%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(170 35% 16% / 0.8) 0%, hsl(170 40% 10% / 0.9) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(160 84% 45% / 0.15) 0%, transparent 60%);
+
+    --shadow-sm: 0 2px 8px hsl(170 40% 5% / 0.3);
+    --shadow-md: 0 4px 20px hsl(170 40% 5% / 0.4);
+    --shadow-lg: 0 8px 40px hsl(170 40% 5% / 0.5);
+    --shadow-glow: 0 0 30px hsl(160 84% 45% / 0.2);
+  }
+
+  /* ===== SECURE+ MODE - Premium Dark Red ===== */
   .theme-premium,
   .theme-premium.light,
   .theme-premium.dark {
@@ -131,6 +265,16 @@
     --shadow-md: 0 4px 20px hsl(210 5% 5% / 0.4);
     --shadow-lg: 0 8px 40px hsl(210 5% 5% / 0.5);
     --shadow-glow: 0 0 30px hsl(355 78% 48% / 0.2);
+
+    /* Sidebar - Premium Red */
+    --sidebar-background: 210 5% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 355 78% 50%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 5% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 5% 20%;
+    --sidebar-ring: 355 78% 50%;
   }
 }
 

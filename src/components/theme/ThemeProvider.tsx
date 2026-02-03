@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useTaxNarrate } from '@/contexts/TaxNarrateContext';
+import { useTaxNarrate, UserMode } from '@/contexts/TaxNarrateContext';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -7,16 +7,23 @@ interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   resolvedTheme: 'light' | 'dark';
-  isPremiumTheme: boolean;
+  modeTheme: 'lite' | 'secure' | 'premium';
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const STORAGE_KEY = 'taxnarrate_theme';
 
+// Map user modes to theme class names
+const modeToThemeClass: Record<UserMode, string> = {
+  lite: 'theme-lite',
+  secure: 'theme-secure',
+  secure_plus: 'theme-premium',
+};
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const { state } = useTaxNarrate();
-  const isPremiumTheme = state.currentMode === 'secure_plus';
+  const currentMode = state.currentMode;
   
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
@@ -28,6 +35,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
 
+  // Handle light/dark theme
   useEffect(() => {
     const root = window.document.documentElement;
     
@@ -59,24 +67,29 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
 
-  // Apply premium theme class based on user mode
+  // Apply mode-specific theme class
   useEffect(() => {
     const root = window.document.documentElement;
     
-    if (isPremiumTheme) {
-      root.classList.add('theme-premium');
-    } else {
-      root.classList.remove('theme-premium');
-    }
-  }, [isPremiumTheme]);
+    // Remove all mode theme classes
+    Object.values(modeToThemeClass).forEach(cls => {
+      root.classList.remove(cls);
+    });
+    
+    // Add current mode theme class
+    const themeClass = modeToThemeClass[currentMode];
+    root.classList.add(themeClass);
+  }, [currentMode]);
 
   const setTheme = (newTheme: Theme) => {
     localStorage.setItem(STORAGE_KEY, newTheme);
     setThemeState(newTheme);
   };
 
+  const modeTheme = currentMode === 'secure_plus' ? 'premium' : currentMode === 'secure' ? 'secure' : 'lite';
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, resolvedTheme, isPremiumTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, resolvedTheme, modeTheme }}>
       {children}
     </ThemeContext.Provider>
   );
