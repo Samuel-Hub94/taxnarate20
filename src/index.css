@@ -13,34 +13,34 @@
 
 @layer base {
   :root {
-    /* TaxNarrate Light Theme - Professional (Default for Lite/Secure) */
-    --background: 210 40% 98%;
-    --foreground: 210 5% 12%;
+    /* TaxNarrate Blue Theme - Professional (Default for Lite/Secure) */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 5% 12%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 5% 12%;
+    --popover: 222 47% 16%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 355 78% 48%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 210 5% 12%;
+    --secondary: 222 30% 20%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 210 10% 40%;
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 355 78% 48%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 355 78% 48%;
+    --border: 222 30% 25%;
+    --input: 222 30% 20%;
+    --ring: 217 91% 60%;
 
     --radius: 0.75rem;
 
@@ -58,31 +58,31 @@
     --cred-portal: 330 81% 60%;
     --cred-other: 210 10% 60%;
 
-    /* Light Theme Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 40% 98%) 0%, hsl(210 20% 96%) 100%);
-    --gradient-header: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 50%, hsl(355 30% 98%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9) 0%, hsl(210 20% 98% / 0.95) 100%);
-    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(355 78% 48% / 0.08) 0%, transparent 60%);
+    /* Blue Theme Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(222 47% 13%) 0%, hsl(222 47% 9%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(222 47% 16%) 0%, hsl(222 47% 12%) 50%, hsl(217 50% 20%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 16% / 0.8) 0%, hsl(222 47% 11% / 0.9) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(217 91% 60% / 0.15) 0%, transparent 60%);
 
-    /* Light Theme Shadows */
-    --shadow-sm: 0 2px 8px hsl(210 20% 80% / 0.15);
-    --shadow-md: 0 4px 20px hsl(210 20% 80% / 0.2);
-    --shadow-lg: 0 8px 40px hsl(210 20% 80% / 0.25);
-    --shadow-glow: 0 0 30px hsl(355 78% 48% / 0.1);
+    /* Blue Theme Shadows */
+    --shadow-sm: 0 2px 8px hsl(222 47% 5% / 0.3);
+    --shadow-md: 0 4px 20px hsl(222 47% 5% / 0.4);
+    --shadow-lg: 0 8px 40px hsl(222 47% 5% / 0.5);
+    --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.2);
 
     /* Success/Warning for Tax */
     --success: 160 84% 39%;
     --warning: 38 92% 50%;
 
-    /* Sidebar - Keep dark for all modes */
-    --sidebar-background: 210 5% 12%;
+    /* Sidebar - Blue theme sidebar */
+    --sidebar-background: 222 47% 11%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 355 78% 48%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 210 5% 22%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 222 30% 20%;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 210 5% 22%;
-    --sidebar-ring: 355 78% 48%;
+    --sidebar-border: 222 30% 22%;
+    --sidebar-ring: 217 91% 60%;
 
     /* Transition */
     --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
