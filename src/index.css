@@ -3,89 +3,17 @@
 @tailwind utilities;
 
 /* TaxNarrate Design System - Enterprise-Grade Nigeria Tax Platform
-   Brand Colors: Deep Navy, Success Green, Warning Amber
+   Brand Colors: Primary Red, Professional Grays
    Style: Boardroom-ready, professional, clean
+   
+   Theme System:
+   - Default (Lite/Secure): Light professional theme
+   - Secure+ (.theme-premium): Dark executive theme
 */
 
 @layer base {
   :root {
-    /* TaxNarrate Dark Theme - Professional Corporate */
-    --background: 210 5% 12%;
-    --foreground: 210 40% 98%;
-
-    --card: 210 8% 16%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 210 8% 18%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 355 78% 48%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 5% 25%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 210 5% 22%;
-    --muted-foreground: 210 10% 60%;
-
-    --accent: 355 78% 48%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 210 5% 28%;
-    --input: 210 5% 22%;
-    --ring: 355 78% 48%;
-
-    --radius: 0.75rem;
-
-    /* Environment Colors */
-    --env-production: 0 84% 60%;
-    --env-test: 45 93% 47%;
-    --env-portal: 217 91% 60%;
-    --env-dr: 25 95% 53%;
-
-    /* Credential Colors */
-    --cred-rdp: 355 78% 48%;
-    --cred-vpn: 262 83% 58%;
-    --cred-server: 217 91% 60%;
-    --cred-database: 45 93% 47%;
-    --cred-portal: 330 81% 60%;
-    --cred-other: 210 10% 60%;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 8% 14%) 0%, hsl(210 5% 10%) 100%);
-    --gradient-header: linear-gradient(135deg, hsl(210 8% 18%) 0%, hsl(210 5% 14%) 50%, hsl(355 40% 20%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(210 8% 18% / 0.8) 0%, hsl(210 5% 12% / 0.9) 100%);
-    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(355 78% 48% / 0.15) 0%, transparent 60%);
-
-    /* Shadows */
-    --shadow-sm: 0 2px 8px hsl(210 5% 5% / 0.3);
-    --shadow-md: 0 4px 20px hsl(210 5% 5% / 0.4);
-    --shadow-lg: 0 8px 40px hsl(210 5% 5% / 0.5);
-    --shadow-glow: 0 0 30px hsl(355 78% 48% / 0.2);
-
-    /* Success/Warning for Tax */
-    --success: 160 84% 39%;
-    --warning: 38 92% 50%;
-
-    /* Sidebar */
-    --sidebar-background: 210 5% 12%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 355 78% 48%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 210 5% 22%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 210 5% 22%;
-    --sidebar-ring: 355 78% 48%;
-
-    /* Transition */
-    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Dark mode is now the default - light mode variant */
-  .light {
+    /* TaxNarrate Light Theme - Professional (Default for Lite/Secure) */
     --background: 210 40% 98%;
     --foreground: 210 5% 12%;
 
@@ -114,6 +42,39 @@
     --input: 214 32% 91%;
     --ring: 355 78% 48%;
 
+    --radius: 0.75rem;
+
+    /* Environment Colors */
+    --env-production: 0 84% 60%;
+    --env-test: 45 93% 47%;
+    --env-portal: 217 91% 60%;
+    --env-dr: 25 95% 53%;
+
+    /* Credential Colors */
+    --cred-rdp: 355 78% 48%;
+    --cred-vpn: 262 83% 58%;
+    --cred-server: 217 91% 60%;
+    --cred-database: 45 93% 47%;
+    --cred-portal: 330 81% 60%;
+    --cred-other: 210 10% 60%;
+
+    /* Light Theme Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 40% 98%) 0%, hsl(210 20% 96%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 50%, hsl(355 30% 98%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9) 0%, hsl(210 20% 98% / 0.95) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(355 78% 48% / 0.08) 0%, transparent 60%);
+
+    /* Light Theme Shadows */
+    --shadow-sm: 0 2px 8px hsl(210 20% 80% / 0.15);
+    --shadow-md: 0 4px 20px hsl(210 20% 80% / 0.2);
+    --shadow-lg: 0 8px 40px hsl(210 20% 80% / 0.25);
+    --shadow-glow: 0 0 30px hsl(355 78% 48% / 0.1);
+
+    /* Success/Warning for Tax */
+    --success: 160 84% 39%;
+    --warning: 38 92% 50%;
+
+    /* Sidebar - Keep dark for all modes */
     --sidebar-background: 210 5% 12%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 355 78% 48%;
@@ -122,6 +83,54 @@
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 210 5% 22%;
     --sidebar-ring: 355 78% 48%;
+
+    /* Transition */
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Secure+ Premium Dark Theme - Exclusive Executive Experience */
+  .theme-premium,
+  .theme-premium.light,
+  .theme-premium.dark {
+    --background: 210 5% 12%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 8% 16%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 8% 18%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 355 78% 48%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 5% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 5% 22%;
+    --muted-foreground: 210 10% 60%;
+
+    --accent: 355 78% 48%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 5% 28%;
+    --input: 210 5% 22%;
+    --ring: 355 78% 48%;
+
+    /* Premium Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 8% 14%) 0%, hsl(210 5% 10%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(210 8% 18%) 0%, hsl(210 5% 14%) 50%, hsl(355 40% 20%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(210 8% 18% / 0.8) 0%, hsl(210 5% 12% / 0.9) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(355 78% 48% / 0.15) 0%, transparent 60%);
+
+    /* Premium Shadows */
+    --shadow-sm: 0 2px 8px hsl(210 5% 5% / 0.3);
+    --shadow-md: 0 4px 20px hsl(210 5% 5% / 0.4);
+    --shadow-lg: 0 8px 40px hsl(210 5% 5% / 0.5);
+    --shadow-glow: 0 0 30px hsl(355 78% 48% / 0.2);
   }
 }
 
@@ -230,6 +239,11 @@
 
   .status-failed {
     @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-destructive/10 text-destructive;
+  }
+
+  /* Premium Theme Indicator */
+  .theme-premium .mode-badge-secure-plus {
+    box-shadow: 0 0 12px hsl(355 78% 48% / 0.4);
   }
 }
 
