@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useTaxNarrate } from '@/contexts/TaxNarrateContext';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -6,6 +7,7 @@ interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   resolvedTheme: 'light' | 'dark';
+  isPremiumTheme: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -13,6 +15,9 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 const STORAGE_KEY = 'taxnarrate_theme';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { state } = useTaxNarrate();
+  const isPremiumTheme = state.currentMode === 'secure_plus';
+  
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem(STORAGE_KEY) as Theme;
@@ -54,13 +59,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
 
+  // Apply premium theme class based on user mode
+  useEffect(() => {
+    const root = window.document.documentElement;
+    
+    if (isPremiumTheme) {
+      root.classList.add('theme-premium');
+    } else {
+      root.classList.remove('theme-premium');
+    }
+  }, [isPremiumTheme]);
+
   const setTheme = (newTheme: Theme) => {
     localStorage.setItem(STORAGE_KEY, newTheme);
     setThemeState(newTheme);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, resolvedTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, resolvedTheme, isPremiumTheme }}>
       {children}
     </ThemeContext.Provider>
   );
