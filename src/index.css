@@ -223,8 +223,58 @@
   }
 
   /* ===== SECURE+ MODE - Premium Dark Red ===== */
-  .theme-premium,
-  .theme-premium.light,
+  /* Secure+ Light Mode */
+  .theme-premium {
+    --background: 355 15% 97%;
+    --foreground: 355 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 355 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 355 30% 12%;
+
+    --primary: 355 78% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 355 15% 92%;
+    --secondary-foreground: 355 30% 12%;
+
+    --muted: 355 15% 94%;
+    --muted-foreground: 355 10% 45%;
+
+    --accent: 355 78% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 355 15% 88%;
+    --input: 355 15% 90%;
+    --ring: 355 78% 45%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(355 15% 98%) 0%, hsl(355 15% 94%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(355 20% 97%) 50%, hsl(355 25% 95%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.95) 0%, hsl(355 15% 98% / 0.98) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(355 78% 45% / 0.1) 0%, transparent 60%);
+
+    --shadow-sm: 0 2px 8px hsl(355 30% 70% / 0.12);
+    --shadow-md: 0 4px 20px hsl(355 30% 70% / 0.15);
+    --shadow-lg: 0 8px 40px hsl(355 30% 70% / 0.2);
+    --shadow-glow: 0 0 30px hsl(355 78% 45% / 0.15);
+
+    /* Sidebar - Premium Red */
+    --sidebar-background: 355 40% 12%;
+    --sidebar-foreground: 355 20% 98%;
+    --sidebar-primary: 355 78% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 355 30% 20%;
+    --sidebar-accent-foreground: 355 20% 98%;
+    --sidebar-border: 355 30% 22%;
+    --sidebar-ring: 355 78% 50%;
+  }
+
+  /* Secure+ Dark Mode */
   .theme-premium.dark {
     --background: 210 5% 12%;
     --foreground: 210 40% 98%;
@@ -254,19 +304,16 @@
     --input: 210 5% 22%;
     --ring: 355 78% 48%;
 
-    /* Premium Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(210 8% 14%) 0%, hsl(210 5% 10%) 100%);
     --gradient-header: linear-gradient(135deg, hsl(210 8% 18%) 0%, hsl(210 5% 14%) 50%, hsl(355 40% 20%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(210 8% 18% / 0.8) 0%, hsl(210 5% 12% / 0.9) 100%);
     --gradient-glow: radial-gradient(circle at 50% 0%, hsl(355 78% 48% / 0.15) 0%, transparent 60%);
 
-    /* Premium Shadows */
     --shadow-sm: 0 2px 8px hsl(210 5% 5% / 0.3);
     --shadow-md: 0 4px 20px hsl(210 5% 5% / 0.4);
     --shadow-lg: 0 8px 40px hsl(210 5% 5% / 0.5);
     --shadow-glow: 0 0 30px hsl(355 78% 48% / 0.2);
 
-    /* Sidebar - Premium Red */
     --sidebar-background: 210 5% 10%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 355 78% 50%;
